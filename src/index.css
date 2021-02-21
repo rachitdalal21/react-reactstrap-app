@@ -11,3 +11,16 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+/*clearning float effect using ::after selector*/
+.img-alignment {
+  float: left;
+}
+.test::after{
+  clear: left;
+  content: "";
+  display: table;
+}
+
+.displayflx {
+ display: inline-flex;
+}
