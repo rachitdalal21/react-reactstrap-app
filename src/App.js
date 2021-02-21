@@ -4,6 +4,7 @@ import './App.css';
 import React, {Component} from 'react'
 import Menu from './components/MenuComponent'
 import {DISHES} from './shared/dishes'
+import MenuCard from "./components/MenuCardComponent";
 
 class  App extends Component {
     constructor(props) {
@@ -21,7 +22,8 @@ class  App extends Component {
                     <NavbarBrand href="/">Re-iterate Con Fusion</NavbarBrand>
                 </div>
             </Navbar>
-            <Menu dishes={this.state.dishes}></Menu>
+            {/*<Menu dishes={this.state.dishes}></Menu>*/}
+            <MenuCard dishes={this.state.dishes}></MenuCard>
         </div>
     );
   }
