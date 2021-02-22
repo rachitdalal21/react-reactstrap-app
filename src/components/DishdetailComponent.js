@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {Card, CardBody, CardHeader, CardImg, CardText, CardTitle} from "reactstrap";
 import Moment from 'moment'
 
-
 class DishDetail extends Component {
     constructor(props){
         super(props)
@@ -12,10 +11,10 @@ class DishDetail extends Component {
     }
 
     renderDish(dish){
+        debugger;
         return (
             <Card>
                 <CardImg width="100%" src={dish.image} alt={dish.name}></CardImg>
-                {/*<CardHeader>{dish.name}</CardHeader>*/}
                 <CardBody>
                     <CardTitle>{dish.name}</CardTitle>
                     <CardText>{dish.description}</CardText>
@@ -58,8 +57,9 @@ class DishDetail extends Component {
     }
 
     render(){
+        debugger;
         const selectedDish = this.props.dish;
-        if (selectedDish !== null) {
+        if (selectedDish && selectedDish !== null) {
             return(
                 <div className="container">
                     <div className="row">

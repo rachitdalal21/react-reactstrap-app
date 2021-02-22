@@ -1,15 +1,10 @@
 import React, {Component} from 'react'
-import {Card, CardImg, CardImgOverlay, CardText, CardBody, CardTitle, CardHeader} from 'reactstrap';
-import DishDetail from "./DishdetailComponent";
-
+import {Card, CardImg, CardImgOverlay, CardTitle} from 'reactstrap';
 
 class MenuCard extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            selectedDish: null
-        }
-
+        console.log("props ", props)
         console.log("Menu Card Constructor is Called")
     }
 
@@ -17,38 +12,17 @@ class MenuCard extends Component {
         console.log("Menu Card component did mount is Called")
     }
 
-    renderDish(dish) {
-        if (dish !== null) {
-            return (
-                <Card>
-                    <CardImg width="100%" src={dish.image} alt={dish.name}></CardImg>
-                    <CardHeader>{dish.name}</CardHeader>
-                    <CardBody>
-                        <CardTitle>{dish.title}</CardTitle>
-                        <CardText>{dish.description}</CardText>
-                    </CardBody>
-                </Card>
-            );
-        } else {
-            return (
-                <div></div>
-            )
-        }
-    }
 
-    onDishSelect(dish) {
-        this.setState({selectedDish: dish})
 
-    }
     render() {
+        debugger;
         const menu = this.props.dishes.map( (dish) => {
             return (
                 <div className="col-12 col-md-5 m-1" key={dish.id}>
-                    <Card onClick={() => this.onDishSelect(dish)}>
+                    <Card onClick={() => this.props.onClick(dish.id)}>
                         <CardImg width="100%" src={dish.image} alt={dish.name}></CardImg>
                         <CardImgOverlay className="ml-5">
                             <CardTitle heading>{dish.name}</CardTitle>
-                            {/*<cardText>{dish.description}</cardText>*/}
                         </CardImgOverlay>
                     </Card>
                 </div>
@@ -59,10 +33,6 @@ class MenuCard extends Component {
             <div className="container">
                 <div className="raw">
                     {menu}
-                </div>
-                <div className="raw">
-                    {/*{this.renderDish(this.state.selectedDish)}*/}
-                    <DishDetail dish={this.state.selectedDish}></DishDetail>
                 </div>
             </div>
         );
