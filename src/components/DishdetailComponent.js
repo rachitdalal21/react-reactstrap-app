@@ -3,11 +3,11 @@ import {Card, CardBody, CardHeader, CardImg, CardText, CardTitle} from "reactstr
 import Moment from 'moment'
 
 class DishDetail extends Component {
-    constructor(props){
-        super(props)
-        this.state = {
-            detailsToBeShown : null
-        }
+    componentDidMount() {
+        console.log("Dish Details componentDidMount is Called")
+    }
+    componentDidUpdate() {
+        console.log("Dish Details componentDidUpdate is Called")
     }
 
     renderDish(dish){
@@ -57,7 +57,7 @@ class DishDetail extends Component {
     }
 
     render(){
-        debugger;
+        console.log("Dish Details component render is Called")
         const selectedDish = this.props.dish;
         if (selectedDish && selectedDish !== null) {
             return(
