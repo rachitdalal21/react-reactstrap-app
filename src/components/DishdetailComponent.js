@@ -1,8 +1,12 @@
 import React, {Component} from 'react';
-import {Card, CardBody, CardHeader, CardImg, CardText, CardTitle} from "reactstrap";
+import {Breadcrumb, BreadcrumbItem, Card, CardBody, CardHeader, CardImg, CardText, CardTitle} from "reactstrap";
 import Moment from 'moment'
+import {Link} from "react-router-dom";
 
 class DishDetail extends Component {
+    constructor(props){
+        super(props)
+    }
     componentDidMount() {
         console.log("Dish Details componentDidMount is Called")
     }
@@ -11,7 +15,6 @@ class DishDetail extends Component {
     }
 
     renderDish(dish){
-        debugger;
         return (
             <Card>
                 <CardImg width="100%" src={dish.image} alt={dish.name}></CardImg>
@@ -27,7 +30,6 @@ class DishDetail extends Component {
 
     renderComments(comments) {
         if (comments.length > 0) {
-
             const comment = comments.map((comment) => {
                 const date = Moment(new Date(comment.date)).format("MMM DD, YYYY")
                 return (
@@ -59,15 +61,32 @@ class DishDetail extends Component {
     render(){
         console.log("Dish Details component render is Called")
         const selectedDish = this.props.dish;
+        const comments = this.props.comments;
         if (selectedDish && selectedDish !== null) {
             return(
                 <div className="container">
+                    <div className="raw">
+                        <Breadcrumb>
+                            <BreadcrumbItem>
+                                <Link to="/home">Home</Link>
+                            </BreadcrumbItem>
+                            <BreadcrumbItem>
+                                <Link to="/menu">Menu</Link>
+                            </BreadcrumbItem>
+                            <BreadcrumbItem active>{this.props.dish.name}
+                            </BreadcrumbItem>
+                        </Breadcrumb>
+                        <div className="col-12">
+                            <h3>{this.props.dish.name}</h3>
+                            <hr/>
+                        </div>
+                    </div>
                     <div className="row">
                         <div className="col-12 col-md-5">
                             {this.renderDish(selectedDish)}
                         </div>
                         <div className="col-12 col-md-5">
-                            {this.renderComments(selectedDish.comments)}
+                            {this.renderComments(comments)}
                         </div>
                     </div>
                 </div>

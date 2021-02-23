@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {Card, CardText, CardBody, CardImg, CardSubtitle, CardTitle} from "reactstrap";
 
 function RenderCard({item}) {
-    debugger;
     return (
         <Card>
             {console.log("item ", item)}
