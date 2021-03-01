@@ -71,6 +71,14 @@ class Header extends Component {
                         Contact Us
                     </NavLink>
                 </NavItem>
+
+                <NavItem>
+                    <NavLink className="nav-link" to="/contactusLocalForm">
+                        <span className="fa fa-address-card fa-lg">
+                        </span>
+                        Contact Us(LF)
+                    </NavLink>
+                </NavItem>
             </Nav>
             <Nav className="ml-auto" Navbar>
                 <NavItem>
