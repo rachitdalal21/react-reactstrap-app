@@ -5,6 +5,7 @@ import Contact from "./ContactComponent";
 import Header from "./HeaderComponent";
 import Footer from "./FooterComponent";
 import Home from "./HomeComponent";
+import About from './AboutComponent'
 import {Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import ContactComponentLocalForm from "./ContactComponentLocalForm";
@@ -56,7 +57,8 @@ class  Main extends Component {
                 {/*<DishDetail dish={this.state.dishes.filter((dish) => dish.id === this.state.selectedDish)[0]}/>*/}
                 <Switch>
                     <Route path="/home"  component={HomePage}></Route>
-                    <Route exact path="/menu" component={() => <MenuCard dishes={this.props.dishes}/> } />
+                    <Route path="/aboutus" component={() => <About leaders={this.props.leaders}/>}></Route>
+                    <Route exact path="/menu" component={ () => <MenuCard dishes={this.props.dishes}/>  } />
                     <Route exact path="/menu/:dishId" component={DishWithId}></Route>
                     <Route exact path="/contactus" component={Contact}></Route>
                     <Route exact path="/contactusLocalForm" component={ContactComponentLocalForm}></Route>
