@@ -79,6 +79,13 @@ class Header extends Component {
                         Contact Us(LF)
                     </NavLink>
                 </NavItem>
+                <NavItem>
+                    <NavLink className="nav-link" to="/orgList">
+                        <span className="fa fa-arrow-circle-o-right fa-lg">
+                        </span>
+                        Org List
+                    </NavLink>
+                </NavItem>
             </Nav>
             <Nav className="ml-auto" Navbar>
                 <NavItem>

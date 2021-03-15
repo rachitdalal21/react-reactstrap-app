@@ -13,15 +13,17 @@ export const initialState = {
 };
 
 function collectEmp ( emp ) {
-    let result  = [];
+    let result  = [],
+        hierarchyDepth = 0
 
     emp.reports.forEach( ( employees ) => {
         if (employees.reports && employees.reports.length > 0 ){
             let res = collectEmp(employees);
-
-            result = result.concat(employees, collectEmp(employees));
+            hierarchyDepth += 1
+            result = result.concat({...employees, hierarchyDepth:hierarchyDepth}, collectEmp(employees));
         } else {
-            result = result.concat(employees)
+            result = result.concat({...employees, hierarchyDepth:hierarchyDepth})
+            hierarchyDepth = 0
         }
     });
     return result;
@@ -79,18 +81,26 @@ export const     Reducer = (state = initialState, action) => {
     // }
 
     let test = collectEmp(initialState.employees[0]);
-    let dict  = {};
+    let dict  = {},
+        maximun = Number.MIN_SAFE_INTEGER;
+    for (let i =0; i < test.length; i++)
+    {
+        if (!dict[test[i].department]){
+            dict[test[i].department] = 1;
+            //if (maximun < test[i].hierarchyDepth ){
+                    maximun =  test[i].hierarchyDepth;
+                // console.log(test[i].department,  test[i].hierarchyDepth)
+            //}
+        } else {
+            dict[test[i].department] += 1;
+            //if (maximun < test[i].hierarchyDepth ){
+                maximun = dict[test[i].department].hierarchyDepth;
+                //console.log(test[i].department,  test[i].hierarchyDepth)
+            //}
+        }
 
-    // for (let i =0; i < test.length; i++)
-    // {
-    //     if (!dict[test[i].department]){
-    //         dict[test[i].department] = 1;
-    //     } else {
-    //         dict[test[i].department] += 1;
-    //     }
-    //
-    //     //console.log(dict);
-    // }
+        //console.log(dict);
+    }
     const totalLength = 7,
         num = 4;
     let right = totalLength - 1,

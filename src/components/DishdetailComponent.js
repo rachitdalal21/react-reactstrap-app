@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-import {Breadcrumb, BreadcrumbItem, Card, CardBody, CardImg, CardText, CardTitle} from "reactstrap";
+import {Breadcrumb, BreadcrumbItem, Card, CardBody, CardImg, CardText, CardTitle, Button} from "reactstrap";
 import Moment from 'moment'
 import {Link} from "react-router-dom";
+import CommentForm from "./CommentForm";
 
 class DishDetail extends Component {
     constructor(props){
@@ -48,6 +49,7 @@ class DishDetail extends Component {
                     <ul className="list-unstyled">
                         {comment}
                     </ul>
+                    <CommentForm></CommentForm>
                 </div>
 
             );

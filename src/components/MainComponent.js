@@ -9,13 +9,15 @@ import About from './AboutComponent'
 import {Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import ContactComponentLocalForm from "./ContactComponentLocalForm";
+import OrganizationHierarcy from "./OrganizationHierarcy";
 
 const mapStateToProps = (state) => {
     return {
         dishes: state.dishes,
         comments: state.comments,
         promotions: state.promotions,
-        leaders: state.leaders
+        leaders: state.leaders,
+        employees: state.employees
     }
 };
 
@@ -62,6 +64,7 @@ class  Main extends Component {
                     <Route exact path="/menu/:dishId" component={DishWithId}></Route>
                     <Route exact path="/contactus" component={Contact}></Route>
                     <Route exact path="/contactusLocalForm" component={ContactComponentLocalForm}></Route>
+                    <Route exact path="/orgList" component={() => <OrganizationHierarcy employees={this.props.employees}/> }></Route>
                     <Redirect to="/home"/>
                 </Switch>
                 <Footer/>
