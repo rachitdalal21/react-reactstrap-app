@@ -4,6 +4,10 @@ import {LEADERS} from '../shared/leaders';
 import {PROMOTIONS} from '../shared/promotions';
 import {EMPLOYEES} from '../shared/employees';
 
+
+/* I DON'T NEED THIS INITIALSTATE AS WE HAVE SPLITTED EACH STATE INTO RESPECTIVE REDUCERS AND PASSING INTO
+* ConfigureStore FUNCTION AND COMBINING THERE */
+
 export const initialState = {
     dishes: DISHES,
     comments: COMMENTS,
@@ -33,7 +37,7 @@ function  minVal ( left, right ) {
     return left > right ? right : left ;
 
 }
-export const     Reducer = (state = initialState, action) => {
+export const Reducer = (state = initialState, action) => {
     // let n = 4,
     //     te = 7;
     // for ( let i = 0; i < te; i++ ){
