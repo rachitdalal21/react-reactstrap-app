@@ -10,6 +10,7 @@ import {Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import ContactComponentLocalForm from "./ContactComponentLocalForm";
 import OrganizationHierarcy from "./OrganizationHierarcy";
+import {addComment} from "../redux/ActionCreators";
 
 const mapStateToProps = (state) => {
     return {
@@ -20,6 +21,10 @@ const mapStateToProps = (state) => {
         employees: state.employees
     }
 };
+
+const mapDispatchToProps = ( dispatch )=> ({
+    addComment: (dishId, rating, author, comments) => dispatch(addComment(dishId, rating, author, comments))
+})
 
 class  Main extends Component {
     constructor(props) {
@@ -45,8 +50,8 @@ class  Main extends Component {
             return(
                 <DishDetail dish={this.props.dishes.filter( (dish) => dish.id === parseInt(match.params.dishId))[0]}
                             comments={this.props.comments.filter((comment) => {
-                                return comment.dishId === parseInt(match.params.dishId)
-                            } )} ></DishDetail>
+                                return comment.dishId === parseInt(match.params.dishId)} )}
+                            addComment={this.props.addComment}></DishDetail>
             );
         };
 
@@ -75,4 +80,4 @@ class  Main extends Component {
 
 }
 
-export default withRouter(connect(mapStateToProps)(Main));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Main));

@@ -29,7 +29,7 @@ class DishDetail extends Component {
 
     }
 
-    renderComments(comments) {
+    renderComments(comments, addComment, dishId) {
         if (comments.length > 0) {
             const comment = comments.map((comment) => {
                 const date = Moment(new Date(comment.date)).format("MMM DD, YYYY")
@@ -49,7 +49,8 @@ class DishDetail extends Component {
                     <ul className="list-unstyled">
                         {comment}
                     </ul>
-                    <CommentForm></CommentForm>
+                    <CommentForm dishId={dishId}
+                                 addCommentsUsingForm={addComment}></CommentForm>
                 </div>
 
             );
@@ -88,7 +89,7 @@ class DishDetail extends Component {
                             {this.renderDish(selectedDish)}
                         </div>
                         <div className="col-12 col-md-5">
-                            {this.renderComments(comments)}
+                            {this.renderComments(comments, this.props.addComment, selectedDish.id)}
                         </div>
                     </div>
                 </div>

@@ -5,8 +5,7 @@ import {LocalForm, Control, Errors} from "react-redux-form";
 
 class CommentForm extends Component{
     constructor(props){
-        super(props)
-        debugger;
+        super(props);
         this.state = {
             isModalOpen: false
         };
@@ -22,8 +21,9 @@ class CommentForm extends Component{
     }
     handleSubmit(values){
         //console.log('Current State is: ' + JSON.stringify(values));
-        alert('Current State is: ' + JSON.stringify(values));
+        //alert('Current State is: ' + JSON.stringify(values));
         this.modalToggle();
+        this.props.addCommentsUsingForm(this.props.dishId, values.rating, values.name, values.comment)
     }
 
     render(){
