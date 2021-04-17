@@ -3,6 +3,7 @@ import {Breadcrumb, BreadcrumbItem, Card, CardBody, CardImg, CardText, CardTitle
 import Moment from 'moment'
 import {Link} from "react-router-dom";
 import CommentForm from "./CommentForm";
+import {Loading} from "./LoadingComponet";
 
 class DishDetail extends Component {
     constructor(props){
@@ -65,7 +66,27 @@ class DishDetail extends Component {
         console.log("Dish Details component render is Called")
         const selectedDish = this.props.dish;
         const comments = this.props.comments;
-        if (selectedDish && selectedDish !== null) {
+        if ( this.props.isLoading ) {
+            return (
+                <div className="container">
+                    <div className="row">
+                        <Loading/>
+                    </div>
+                </div>
+            )
+        }
+        else if( this.props.errMess ){
+            return (
+                <div className="container">
+                    <div className="row">
+                        <h4>{this.props.errMess}</h4>
+                    </div>
+                </div>
+            )
+        }
+        // if (selectedDish && selectedDish !== null) {
+        else {
+
             return(
                 <div className="container">
                     <div className="raw">
@@ -94,11 +115,12 @@ class DishDetail extends Component {
                     </div>
                 </div>
             );
-        } else {
-            return(
-                <div></div>
-            );
         }
+        // else {
+        //     return(
+        //         <div></div>
+        //     );
+        // }
 
     }
 }

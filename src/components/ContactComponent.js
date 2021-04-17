@@ -54,6 +54,10 @@ class Contact extends Component  {
         console.log("The form state is : "+JSON.stringify( this.state));
         alert("The form state is : "+JSON.stringify(this.state));
         event.preventDefault();
+
+        setTimeout(function () {
+
+        }, 1000)
     }
 
     handleBlur = (field) =>  (evt) => {

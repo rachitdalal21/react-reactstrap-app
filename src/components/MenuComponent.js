@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {Media} from 'reactstrap';
+import {Loading} from "./LoadingComponet";
 
 class Menu extends Component {
 
@@ -18,7 +19,7 @@ class Menu extends Component {
 // </div>
 
     render() {
-        const menu = this.props.dishes.map( (dish) => {
+        const menu = this.props.dishes.dishes.map( (dish) => {
             return (
                 <div className="col-12 mt-5" key={dish.id}>
                     <Media tag="li">
@@ -34,15 +35,36 @@ class Menu extends Component {
             )
         });
 
-        return(
+        if( this.props.dishes.isLoading ) {
+            return (
             <div className="container">
-                <div className="raw">
-                    <Media list>
-                        {menu}
-                    </Media>
+                <div className="row">
+                    <Loading/>
+                </div>
+            </div>
+            );
+        }
+        else if ( this.props.dishes.errMess ) {
+        return (
+            <div className="container">
+                <div className="row">
+                    {this.props.dishes.errMess}
                 </div>
             </div>
         );
+        }
+        else {
+            return(
+                <div className="container">
+                    <div className="raw">
+                        <Media list>
+                            {menu}
+                        </Media>
+                    </div>
+                </div>
+            );
+        }
+
     }
 }
 
